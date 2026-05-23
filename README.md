@@ -8,7 +8,7 @@
 ```js
 // You can use either version 1 or 2 depending on your liking, version 1 is recommended more because if you already have existing functions with these names in your file, they will interfere 
 const WawaUtils = require('@set399/wawautils'); // Version 1 | You can change "WawaUtils" to anything you want here 
-const {makef, editf, readf, delf, readjsonf, editjsonf, rand, randit, isHex, isURL} // Version 2 | Use only if you're sure and want easy access to functions without having to retype the module variable name
+const {makef, editf, readf, delf, readjsonf, editjsonf, rand, randint, isHex, isURL} = require('@set399/wawautils'); // Version 2 | Use only if you're sure and want easy access to functions without having to retype the module variable name
 ```
 - **In the rest of the README, we will be using Version 1 and the variable will be named `WawaUtils`**
 # Filesystem (FS) functions (other than the 2 read functions, the other functions will return `true` if the operation was successful and `false` if not, and will also log the error in the console)
@@ -40,7 +40,7 @@ await WawaUtils.editf('./myInterestingTextFile.txt', 'Haiii!! :D I love using Wa
 // Usage:
 await WawaUtils.readf('path/to/the/file/filename.fileextension');
 // Example: (will print out "Haiii!! :D I love using WawaUtils!! -w-" into the console as from the previous example)
-const content = WawaUtils.readf('./myInterestingTextFile.txt');
+const content = await WawaUtils.readf('./myInterestingTextFile.txt');
 console.log(content);
 ```
 - `delf`: Deletes the file specified in the `path`
@@ -58,12 +58,12 @@ await WawaUtils.readjsonf('path/to/the/json/file/filename.json');
 const parsedJson = await WawaUtils.readjsonf('./myJsonFile.json');
 console.log(parsedJson.e); // Prints out 1 into the console
 ```
-- `editjsonf`: Either rewrites an existing JSON file in the specified `path` or if it doesn't exist, just like `editf`, it makes a new one with the specified `content`, with the encoding set as UTF-8
+- `editjsonf`: Either rewrites an existing JSON file in the specified `path` or if it doesn't exist, just like `editf`, it makes a new one with the specified `content`, with the encoding set as UTF-8, it also already stringifies the JSON for you****
 ```js
 // Usage:
 await WawaUtils.editjsonf('path/to/the/json/file/filename.json');
 // Example:
-await WawaUtils.editjsonf('./');
+await WawaUtils.editjsonf('./myJsonFile.json', {e: 2});
 ```
 # Randomization (pseudo-random) functions
 - *Please keep in mind all of these functions use `Math.random()` which is predictable*
@@ -90,16 +90,16 @@ WawaUtils.randint(1, 10);
 - `isHex`: Checks if the specified string is a HEX color code like #FF0000 using RegEx
 ```js
 // Usage:
-isHex('string');
+WawaUtils.isHex('string');
 // Examples:
-isHex('#b7edb9'); // true
-isHex('Basically anything that is not a hex code') // false 
+WawaUtils.isHex('#b7edb9'); // true
+WawaUtils.isHex('Basically anything that is not a hex code') // false 
 ```
 - `isURL`: Checks if the specified string is structured like a URL using RegEx (Credit to https://stackoverflow.com/questions/3310216/url-regex-without-http-www )
 ```js
 // Usage:
-isURL('string');
+WawaUtils.isURL('string');
 // Examples:
-isURL('https://github.com/set399/WawaUtils'); // true
-isURL('Basically anything that is not a URL'); // false
+WawaUtils.isURL('https://github.com/set399/WawaUtils'); // true
+WawaUtils.isURL('Basically anything that is not a URL'); // false
 ```
